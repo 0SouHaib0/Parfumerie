@@ -1,0 +1,27 @@
+﻿
+
+<link rel="stylesheet" href="~/Content/ContactStyle.css" media="all  " />
+
+
+<div class="container">
+    <form id="contact" action="" method="post">
+        <h3>Formulaire de contact </h3>
+        <h4>Contactez nous</h4>
+        <fieldset>
+            <input placeholder="Votre nom" type="text" tabindex="1" required autofocus>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Votre email" type="email" tabindex="2" required>
+        </fieldset>
+        <fieldset>
+            <input placeholder="Votre numero (optionnel)" type="tel" tabindex="3" required>
+        </fieldset>
+        <fieldset>
+            <textarea placeholder="Ecrivez votre message ici...." tabindex="5" required></textarea>
+        </fieldset>
+        <fieldset>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+        </fieldset>
+        <p class="copyright">Bienvenue dans <a href='@Url.Action("Index","Produit")'>Parfumerie</a></p>
+    </form>
+</div>

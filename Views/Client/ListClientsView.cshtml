@@ -1,0 +1,48 @@
+﻿@model WebApplication1.Models.ListClientModel
+@{
+    ViewBag.Title = "ListClientsView";
+}
+
+<h2>La liste des Clients</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cours Complet Bootstrap 4</title>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link  rel="stylesheet" href="~/Content/bootstrap.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Les tableaux Bootstrap</h1>
+
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>EMail</th>
+                    <th>Adresse</th>
+                    <th>Tél</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (CLIENT c in Model.AllClients)
+                {
+                <tr>
+                    <td>@c.Nom</td>
+                    <td>@c.Prenom</td>
+                    <td>@c.Email</td>
+                    <td>@c.Adresse</td>
+                    <td>@c.Num</td>
+                    <td><button type="button" class="btn btn-light">Modifier</button></td>
+                    <td><button type="button" class="btn btn-light">Supprimer</button></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

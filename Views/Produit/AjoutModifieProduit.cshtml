@@ -1,0 +1,119 @@
+﻿@model WebApplication1.PRODUIT
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<nav class="navbar navbar-dark bg-dark">
+
+    <!-- Navbar content -->
+    <div style="color:white;height:70px;font-size: 1.2em;padding:1%;margin:1%">
+        <a class="navbar-brand" href='@Url.Action("Dashboard","Client")'>
+            <img src="~/Content/logo.png" width="50" height="50" alt="">
+            Plan de travail
+        </a>
+    </div>
+    <form action='@Url.Action("Index","Produit")' class="form-inline">
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+    </form>
+</nav>
+<div class="container" style="padding: 3% 0 0;">
+    <div style="width:50%;height:100%;border:2px solid #000;margin:auto; ">
+        <br />
+        <h2 style="text-align:center"> Fiche de l'ajout d'un nouveau produit </h2>
+        <div class="container">
+
+            @using (Html.BeginForm("AjoutModifieProduit", "Produit", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+            {
+                @Html.HiddenFor(model => model.ProduitID)
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(model => model.Nom, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nom)
+                </div><br />
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(model => model.Prix, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Prix, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Prix)
+                </div><br />
+                <div class="form-group col-md-7">
+                    @Html.LabelFor(model => model.Photo, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+                </div><br />
+                <div class="form-group col-md-7 " rows="3">
+                    @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control " } })
+                </div><br />
+
+                <div class="form-group">
+
+                    @Html.LabelFor(model => model.CategorieID, new { @class = "control-label" })
+                    <div class="col-md-7">
+                        @{
+                            WebApplication1.SOSOEntities db = new WebApplication1.SOSOEntities();
+                            List<WebApplication1.CATEGORIE> ListCategories = db.CATEGORIEs.ToList();
+                            <select value="CategorieID" name="CategorieID" class="form-control">
+                               
+                                    <option value="" disabled hidden selected> Selectionner une categorie</option>
+                                    @foreach (WebApplication1.CATEGORIE s in ListCategories)
+                                    {
+                                        <option value="@s.CategorieID"> @s.NomCtg</option>
+                                    }
+                                
+                            </select>
+                        }
+                        @Html.ValidationMessageFor(model => model.CategorieID, "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MarqueID, new { @class = "control-label" })
+                    <div class="col-md-7">
+                        @{
+
+                            List<WebApplication1.MARQUE> ListMarques = db.MARQUEs.ToList();
+                            <select value="MarqueID" name="MArqueID" class="form-control">
+                               
+                                    <option value="" disabled hidden selected> Selectionner une marque</option>
+                                    @foreach (WebApplication1.MARQUE s in ListMarques)
+                                    {
+                                        <option value="@s.MarqueID"> @s.NomMarque</option>
+                                    }
+                                
+                            </select>
+                        }
+                        @Html.ValidationMessageFor(model => model.MarqueID, "", new { htmlAttributes = new { @class = "form-comtrol" } })
+                    </div>
+                </div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TypeID, new { @class = "control-label" })
+                    <div class="col-md-7 ">
+                        @{
+                            List<WebApplication1.TYPE> ListTypes = db.TYPEs.ToList();
+                            <select value="TypeID" name="TypeID" class="form-control">
+                                
+                                    <option value="" disabled hidden selected> Selectionner un type</option>
+                                    @foreach (WebApplication1.TYPE s in ListTypes)
+                                    {
+                                        <option value="@s.TypeID"> @s.NomType</option>
+                                    }
+                                
+                            </select>
+                        }
+                        @Html.ValidationMessageFor(model => model.TypeID, "", new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+
+                </div><br />
+
+
+                <div class="form-group">
+                    <input type="submit" href='@Url.Action("ListProduit","Produit")' value="Submit" class="btn btn-dark" />
+                    <input type="reset" value="Reset" class="btn btn-secondary" />
+                </div>
+            } <br>
+        </div>
+    </div>
+</div>
+

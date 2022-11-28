@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "FormulaireView";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <link rel="stylesheet" href="~/Content/formStyle.css" />
+</head>
+
+<body>
+
+    <form action="@Url.Action("AddClient","Client")" method="post">
+    <div class="main-w3layouts wrapper">
+        <h1>Fiche d'inscription </h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top">
+                    <input class="text" type="text" name="Nom" placeholder="Nom" required=""><br>
+                    <input class="text" type="text" name="Prenom" placeholder="Prenom" required=""><br>
+                    <input class="text" type="text" name="Adresse" placeholder="Adresse" required=""><br>
+                    <input class="text" type="text" name="Num" placeholder="Télephone" required="">
+                    <input class="text email" type="email" name="Email" placeholder="Email" required="">
+                    <input class="text" type="password" name="Password" placeholder="Password" required="">
+                    <input class="text w3lpass" type="password" name="Password" placeholder="Confirm Password" required="">
+                    <div class="wthree-text">
+                        <label class="anim">
+                            <input type="checkbox" class="checkbox" required="">
+                            <span>J'accepte les terms & les Conditions</span>
+                        </label>
+                        <div class="clear"> </div>
+                    </div>
+                    <input type="submit" value="SIGNUP">
+                
+                <p>Vous avez un compte ?! <a href="@Url.Action("Login","Client")"> Connectez vous!</a></p>
+            </div>
+        </div>
+        </form>
+</body>
+</html>

@@ -1,0 +1,152 @@
+
+        * {
+            box-sizing: border-box;
+          }
+           
+          html,
+          body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #7EC855;
+            font-family: 'Roboto', sans-serif;
+          }
+          .shopping-cart {
+            width: 750px;
+            height: auto;
+            margin: 80px auto;
+            background: #FFFFFF;
+            box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+            border-radius: 6px;
+           
+            display: flex;
+            flex-direction: column;
+          }
+          .title {
+            height: 60px;
+            border-bottom: 1px solid #E1E8EE;
+            padding: 20px 30px;
+            color: #5E6977;
+            font-size: 18px;
+            font-weight: 400;
+          }
+           
+          .item {
+            padding: 20px 30px;
+            height: 120px;
+            display: flex;
+            justify-content: space-between;
+          }
+           
+          .item:nth-child(3) {
+            border-top:  1px solid #E1E8EE;
+            border-bottom:  1px solid #E1E8EE;
+          }
+          .buttons {
+            position: relative;
+            padding-top: 30px;
+            margin-right: 60px;
+          }
+          
+          .quantity {
+            padding-top: 20px;
+            margin-right: 60px;
+          }
+          .quantity input {
+            -webkit-appearance: none;
+            border: none;
+            text-align: center;
+            width: 32px;
+            font-size: 16px;
+            color: #43484D;
+            font-weight: 300;
+          }
+           
+          button[class*=btn] {
+            width: 30px;
+            height: 30px;
+            background-color: #E1E8EE;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+          }
+          button:focus,
+          input:focus {
+            outline:0;
+          }
+          
+          .total-price {
+            width: 83px;
+            padding-top: 27px;
+            text-align: center;
+            font-size: 16px;
+            color: #43484D;
+            font-weight: 300;
+          }
+          @media (max-width: 800px) {
+            .shopping-cart {
+              width: 100%;
+              height: auto;
+              overflow: hidden;
+            }
+            .item {
+              height: auto;
+              flex-wrap: wrap;
+              justify-content: center;
+            }
+            .image img {
+              width: 50%;
+            }
+            
+            .image,
+            .quantity
+             {
+              width: 100%;
+              text-align: center;
+              margin: 6px 0;
+              height : 90px;
+            }
+            .buttons {
+              margin-right: 20px;
+            }
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #000000;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 0 1px inset,rgba(0, 0, 0, 0.1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  align-content: center;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-9:disabled {
+  cursor: default;
+}
+
+.button-9:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+          }

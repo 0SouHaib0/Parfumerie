@@ -1,0 +1,58 @@
+﻿
+@model WebApplication1.Models.ListClientModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MonCompteView</title>
+</head>
+<body>
+    <div class="container">
+        
+        <table class="table">
+            <thead>
+                <h2>Bonjour @Model.c.Nom @Model.c.Prenom</h2>
+                <tr>
+                    <th></th>
+                    <th>Mes coordonnes</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-success">
+                    <td>Mon nom</td>
+                    <td>@Model.c.Nom </td>
+
+                </tr>
+                <tr class="table-success">
+                    <td>Mon Prenom</td>
+                    <td>@Model.c.Prenom </td>
+
+                </tr>
+                <tr class="table-success">
+                    <td>Mon Numero</td>
+                    <td>@Model.c.Num </td>
+
+                </tr>
+                <tr class="table-success">
+                    <td>Mon adresse</td>
+                    <td>@Model.c.Adresse </td>
+
+                </tr>
+                <tr class="table-success">
+                    <td>Mon mail</td>
+                    <td>@Model.c.Email </td>
+
+                </tr>
+
+            </tbody>
+
+            </table>
+        <form action='@Url.Action("Deconnexion","Client")' class="form-inline">
+
+            <button class="btn btn-secondary" type="submit">Log out</button>
+        </form>
+                </body>
+</html>

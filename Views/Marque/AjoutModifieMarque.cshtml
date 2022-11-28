@@ -1,0 +1,49 @@
+﻿@model WebApplication1.MARQUE
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<nav class="navbar navbar-dark bg-dark">
+
+    <!-- Navbar content -->
+    <div style="color:white;height:70px;font-size: 1.2em;padding:1%;margin:1%">
+        <a class="navbar-brand" href='@Url.Action("Dashboard","Client")'>
+            <img src="~/Content/logo.png" width="50" height="50" alt="">
+            Plan de travail
+        </a>
+    </div>
+    <form action='@Url.Action("Index","Produit")' class="form-inline">
+
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+    </form>
+</nav>
+
+
+<div class="container" style="padding: 3% 0 0;">
+    <div style="width:50%;height:50%;border:2px solid #000;margin:auto; ">
+        <br />
+        <h2 style="text-align:center"> Fiche de l'ajout d'une nouvelle marque </h2>
+        <div class="container">
+
+            @using (Html.BeginForm("AjoutModifieMarque", "Marque", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+            {
+                @Html.HiddenFor(model => model.MarqueID)
+                <div class="form-group  col-md-7">
+                    @Html.LabelFor(model => model.NomMarque, new { @class = "control-label" })
+                    @Html.EditorFor(model => model.NomMarque, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NomMarque)
+                </div>
+                
+               
+
+
+                <div class="form-group">
+                    <input type="submit" href='@Url.Action("ListMarques","Marque")' value="Submit" class="btn btn-dark" />
+                    <input type="reset" value="Reset" class="btn btn-secondary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

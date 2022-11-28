@@ -1,0 +1,208 @@
+﻿@model WebApplication1.Models.AllProduitModel
+@{
+    ViewBag.Title = "IndexView";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="~/Content/styleCards.css" media="all  " />
+    <link rel="stylesheet" href="~/Content/styleFooter.css" media="all  " />
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'roboto', sans-serif;
+        }
+
+        .navbare {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #f5f5f5;
+            z-index: 9;
+        }
+
+        .nav {
+            padding: 10px 10vw;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            height: 60px;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .search {
+            width: 500px;
+            display: flex;
+        }
+
+        .search-box {
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border: 1px solid #d1d1d1;
+            text-transform: capitalize;
+            background: none;
+            color: #a9a9a9;
+            outline: none;
+        }
+
+        .search-btn {
+            width: 20%;
+            height: 40px;
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #76b852;
+            color: #fff;
+            text-transform: capitalize;
+            font-size: 15px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .search-box::placeholder {
+            color: #a9a9a9;
+        }
+
+        .nav-items a {
+            margin-left: 20px;
+        }
+
+            .nav-items a img {
+                width: 40px;
+            }
+
+        .links-container {
+            width: 100%;
+            display: flex;
+            padding: 10px 10vw;
+            justify-content: center;
+            list-style: none;
+            border-top: 1px solid #d1d1d1;
+        }
+
+        .link {
+            text-transform: capitalize;
+            padding: 0 10px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #383838;
+            opacity: 0.5;
+            transition: .5s;
+        }
+
+            .link:hover {
+                opacity: 1;
+                color: #76b852
+            }
+    </style>
+</head>
+
+<body>
+
+
+    <nav class="navbare">
+        <div class="nav">
+            <img src="~/Content/logo.png" class="brand-logo" alt="">
+            <div class="nav-items">
+                @using (Html.BeginForm("Search", "Produit", FormMethod.Get))
+                {
+                    <div class="search">
+                        <input type="text" class="search-box" name="mot" placeholder="search brand, product">
+                        <button class="search-btn">search</button>
+                    </div>
+                }
+                <a href="#"><img src="~/Content/compte.png" alt=""></a><br>
+                <a href='@Url.Action("Index","Panier")'><img src="~/Content/cart.png" alt=""></a>
+            </div>
+        </div>
+    </nav><form action="">
+        <ul class="links-container">
+            <li class="link-item"><a href='@Url.Action("CategorieProduit","Produit")?n=1' class="link">Homme</a></li>
+            <li class="link-item"><a href='@Url.Action("CategorieProduit","Produit")?n=2' class="link">Femme</a></li>
+            <li class="link-item"><a href='@Url.Action("CategorieProduit","Produit")?n=3' class="link">Unisex</a></li>
+        </ul>
+    </form>
+
+    <div class="container-sm">
+
+
+        <div class="container page-wrapper">
+            <div class="page-inner">
+                <div class="row">
+                    @foreach (PRODUIT p in Model.allProduits)
+                    {
+                        <div class="el-wrapper">
+                            <div class="box-up">
+                                <img class="img" src="~/Content/Images/@p.Photo" alt="">
+                                <div class="img-info">
+                                    <div class="info-inner">
+                                        <span class="p-name">@p.Nom </span>
+                                        <span class="p-company">100 ml</span>
+                                    </div>
+                                    <div class="a-size">
+                                        @if (p.TypeID == 1)
+                                        {<span class="size">Eau de parfum</span>}
+                                        else
+                                        {<span class="size">Eau de toilette</span>}<br>
+                                         <a href='@Url.Action("Detail","Produit")?id=@p.ProduitID' style="text-decoration:underline;color:#76b852">   <span class="size" style="color:#76b852">Details</span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="box-down">
+                                <div class="h-bg">
+                                    <div class="h-bg-inner"></div>
+                                </div>
+
+                                <div class="cart" href="#">
+                                    <span class="price">@p.Prix Dh </span>
+                                    <span class="add-to-cart">
+                                     <a href='@Url.Action("AjouterPanier","Panier")?id=@p.ProduitID'>   <span class="txt"> Ajouter au panier </span></a> 
+</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="~/Content/logo.png" class="logo" alt="">
+            <div class="footer-ul-container">
+                <ul class="category">
+                    <li class="category-title">Marque</li>
+                    @foreach (MARQUE m in Model.allMarques)
+                    {
+                        <li><a href="@Url.Action("Marque","Produit")?n=@m.MarqueID" class="footer-link">@m.NomMarque</a></li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </footer>
+    
+</body>
+
+</html>

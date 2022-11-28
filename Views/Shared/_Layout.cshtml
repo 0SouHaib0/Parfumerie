@@ -1,0 +1,83 @@
+﻿@using WebApplication1.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta charset="ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <meta charset="ISO-8859-1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/navStyle.css" media="all  " />
+    <link rel="stylesheet" href="~/Content/style.css" media="all" />
+  
+</head>
+<body>
+
+    <nav class="navbar">
+        <!-- LOGO -->
+        <a href='@Url.Action("Index", "Produit")'>
+            <div class="logo">
+                <img src="~/Content/logo.png" alt="img" style="max-width: 50px; max-height: 54px"></img>
+                Parfumerie
+            </div>
+        </a>
+        <!-- NAVIGATION MENU -->
+        <ul class="nav-links">
+
+            <!-- NAVIGATION MENUS -->
+            <div class="menu">
+            <li><a href='@Url.Action("Index", "Produit")'>Home</a></li>
+            <li><a href="/">About us</a></li>
+            <li><a href='@Url.Action("ContactUs", "Produit")'>Contact us</a></li>
+            @{ if (Session["data"] != null)
+                {
+                    string n = (Session["data"] as ClassUser).Nom;
+                    int nb = (Session["data"] as ClassUser).CLientID;
+
+                    <li><a href='@Url.Action("MonCompte", "Client")?id=@nb'>@n</a></li>
+                }
+
+                else
+                {
+                    <li><a href='@Url.Action("Login", "Client")'> Login </a></li>
+                }
+            } </div>
+        </ul>
+    </nav>
+
+    @RenderBody()
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatbox__support">
+                <div class="chatbox__header">
+                    <div class="chatbox__image--header">
+                        <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-5--v1.png" alt="image">
+                    </div>
+                    <div class="chatbox__content--header">
+                        <h4 class="chatbox__heading--header">Assistant</h4>
+                        <p class="chatbox__description--header">Bonjour je suis Souhaib, vous avez besion d'aide?!!</p>
+                    </div>
+                </div>
+                <div class="chatbox__messages">
+                    <div></div>
+                </div>
+                <div class="chatbox__footer">
+                    <input type="text" placeholder="Ecrire votre messsage...">
+                    <button class="chatbox__send--footer send__button">envoyer</button>
+                </div>
+            </div>
+            <div class="chatbox__button">
+                <button><img src="~/Content/Images/chatbot-icon.png" /></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/app.js"></script>
+
+
+</body>
+</html>

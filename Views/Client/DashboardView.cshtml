@@ -1,0 +1,83 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <style>
+        /* Three image containers (use 25% for four, and 50% for two, etc) */
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clear floats after image containers */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+
+        }
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 33.33%;
+            padding: 5px;
+        }
+
+    </style>
+
+    <title>DashboardView</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+
+        <!-- Navbar content -->
+        <div style="color:white;height:70px;font-size: 1.2em;padding:1%;margin:1%">
+            <a class="navbar-brand" href='@Url.Action("Dashboard","Client")'>
+                <img src="~/Content/logo.png" width="50" height="50" alt="">
+                Plan de travail
+            </a>
+        </div>
+        <form action='@Url.Action("Index","Produit")' class="form-inline">
+
+            <button  class="btn btn-secondary" type="submit">Log out</button>
+        </form>
+    </nav>
+    @{ 
+        WebApplication1.SOSOEntities db = new WebApplication1.SOSOEntities();
+        int n = db.CLIENTs.Count();
+        int p = db.PRODUITs.Count();
+        int m = db.MARQUEs.Count();
+    }
+    <div class="row">
+        <div class="column">
+            <img src="~/Content/users.png" alt="Snow" style="width:70%;padding:10%;margin:10%">
+            <p style="text-align:center;color:mediumpurple;font-size:x-large">Clients existants :@n  </p>
+            <p style="text-align:center"> <a href='@Url.Action("ListClients","Client")' style="text-align:center;color:mediumpurple;font-size:x-large">Consulter les Clients</a></p>
+        </div>
+        <div class="column">
+            <img src="~/Content/marques.png" alt="Mountains" style="width:60%;padding:10%;margin:10%">
+            <p style="text-align:center;color:lawngreen;font-size:x-large">
+                Marques existantes :@m  </p>
+            <p style="text-align:center">      <a href='@Url.Action("ListMarques","Marque")' style="text-align:center;color:lawngreen;font-size:x-large">Consulter les Marques</a></p>
+</div>
+        <div class="column">
+            <img src="~/Content/products.png" alt="Mountains" style="width:60%;padding:10%;margin:10%">
+            <p style="text-align:center;color:red;font-size:x-large">Produits existants :@p  </p>
+         <p style="text-align:center">   <a href='@Url.Action("ListProduit","Produit")' style="text-align:center;color:red;font-size:x-large">Consulter les Produits</a>
+      </p>
+            </div>
+    </div>
+
+       
+</body>
+</html>
